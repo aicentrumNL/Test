@@ -1,10 +1,13 @@
-.phero { padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: 0; }
-.phero__title { margin-top: 1.4rem; font-size: var(--step-4); max-width: 16ch; }
-.phero__intro { margin-top: 1.6rem; max-width: 56ch; }
-.phero__meta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+.phero { padding-top: clamp(2.5rem, 6vw, 5.5rem); padding-bottom: 0; }
+.phero__title { margin-top: 1.2rem; font-size: var(--step-4); max-width: 20ch; }
+.phero__intro { margin-top: 1.4rem; max-width: 58ch; }
+.phero__meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; }
 .phero__chip {
-  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
-  color: var(--ink-2); padding: 0.5em 1em; border: 1px solid var(--line-strong); border-radius: 999px;
+  font-size: 0.69rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
+  color: var(--ink-2); padding: 0.45em 0.9em; border: 1px solid var(--line-strong); border-radius: 999px;
   background: var(--paper);
 }
-.phero__rule { margin-top: clamp(2.5rem, 5vw, 4rem); }
+.phero__rule { margin-top: clamp(2rem, 4.5vw, 3.5rem); }
+@media (max-width: 600px) {
+  .phero__title { font-size: var(--step-3); }
+}

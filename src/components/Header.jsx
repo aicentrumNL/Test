@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <header className={`hdr ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="hdr__bar shell">
-        <Link to="/" className="hdr__brand" aria-label={`${company.name} — home`}>
+        <Link to="/" className="hdr__brand" aria-label={`${company.name} — home`} onClick={closeMenu}>
           <Logo className="hdr__logo" />
           <span className="hdr__brandtext">
             <strong>{company.name}</strong>
@@ -50,7 +50,7 @@ export default function Header() {
             <Phone size={15} strokeWidth={1.8} />
             <span>{company.phone}</span>
           </a>
-          <Link to="/contact" className="btn btn--primary hdr__cta">Offerte aanvragen</Link>
+          <Link to="/contact" className="hdr__cta btn btn--primary">Offerte aanvragen</Link>
           <button
             className="hdr__burger"
             onClick={() => setOpen((v) => !v)}
@@ -62,19 +62,27 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobiel paneel */}
-      <div className="hdr__panel" hidden={!open}>
-        <nav className="hdr__panelnav" aria-label="Mobiel menu">
-          <NavLink to="/" end className="hdr__panellink" onClick={closeMenu}>Home</NavLink>
-          {nav.map((item) => (
-            <NavLink key={item.to} to={item.to} className="hdr__panellink" onClick={closeMenu}>{item.label}</NavLink>
-          ))}
-        </nav>
-        <div className="hdr__panelfoot">
-          <a href={company.phoneHref} className="hdr__panelphone">{company.phone}</a>
-          <Link to="/contact" className="btn btn--primary" onClick={closeMenu}>Offerte aanvragen</Link>
+      {/* Mobiel paneel — conditioneel gerenderd zodat display:flex nooit de hidden-staat overschrijft */}
+      {open && (
+        <div className="hdr__panel">
+          <nav className="hdr__panelnav" aria-label="Mobiel menu">
+            <NavLink to="/" end className="hdr__panellink" onClick={closeMenu}>Home</NavLink>
+            {nav.map((item) => (
+              <NavLink key={item.to} to={item.to} className="hdr__panellink" onClick={closeMenu}>
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+          <div className="hdr__panelfoot">
+            <a href={company.phoneHref} className="hdr__panelphone" onClick={closeMenu}>
+              {company.phone}
+            </a>
+            <Link to="/contact" className="btn btn--primary" onClick={closeMenu}>
+              Offerte aanvragen
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   )
 }
