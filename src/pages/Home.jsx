@@ -4,11 +4,34 @@ import {
   company, stats, audiences, services, process, projects, usps,
 } from '../data/site'
 import useDocumentMeta from '../hooks/useDocumentMeta'
+import useCountUp from '../hooks/useCountUp'
 import SectionLabel from '../components/SectionLabel'
 import Reveal from '../components/Reveal'
 import Placeholder from '../components/Placeholder'
+import PlasterStroke from '../components/PlasterStroke'
 import CtaBand from '../components/CtaBand'
 import './home.css'
+
+// Stat met teller-animatie voor numerieke waarden
+function AnimatedStat({ stat, delay }) {
+  // Extraheer getal uit strings als "10+", "Sinds '18", etc.
+  const numMatch = stat.value.match(/\d+/)
+  const num = numMatch ? parseInt(numMatch[0], 10) : null
+  const prefix = numMatch ? stat.value.slice(0, numMatch.index) : ''
+  const suffix = numMatch ? stat.value.slice(numMatch.index + numMatch[0].length) : ''
+
+  const [count, ref] = useCountUp(num ?? 0, { duration: 1600, delay: delay * 1000 })
+
+  return (
+    <Reveal delay={delay} className="stat">
+      <span className="stat__value" ref={ref}>
+        {num != null ? `${prefix}${count}${suffix}` : stat.value}
+      </span>
+      <span className="stat__label">{stat.label}</span>
+      <span className="stat__sub">{stat.sub}</span>
+    </Reveal>
+  )
+}
 
 export default function Home() {
   useDocumentMeta(
@@ -20,6 +43,11 @@ export default function Home() {
     <>
       {/* ---------- HERO ---------- */}
       <section className="hero">
+        {/* Decoratieve plamuurstreek — tekent zichzelf bij laden */}
+        <div className="hero__stroke-wrap" aria-hidden="true">
+          <PlasterStroke className="hero__stroke" />
+        </div>
+
         <div className="shell hero__grid">
           <div className="hero__copy">
             <Reveal>
@@ -28,7 +56,8 @@ export default function Home() {
               </span>
             </Reveal>
             <Reveal delay={0.08} as="h1" className="hero__title">
-              Strak stucwerk,<br />opgeleverd <span className="display-italic">op&nbsp;schema.</span>
+              Strak stucwerk,<br />opgeleverd{' '}
+              <em className="hero__italic">op&nbsp;schema.</em>
             </Reveal>
             <Reveal delay={0.16} as="p" className="lead hero__lead">
               Een betrouwbare stucpartner voor aannemers, ontwikkelaars en verzekeraars.
@@ -36,7 +65,7 @@ export default function Home() {
               met {company.warranty} garantie.
             </Reveal>
             <Reveal delay={0.24} className="hero__actions">
-              <Link to="/contact" className="btn btn--primary">
+              <Link to="/contact" className="btn btn--primary hero__cta-btn">
                 Offerte aanvragen <ArrowRight className="btn__arrow" size={16} />
               </Link>
               <Link to="/projecten" className="btn btn--ghost">Bekijk projecten</Link>
@@ -58,16 +87,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------- STATS ---------- */}
+      {/* ---------- STATS met teller-animatie ---------- */}
       <section className="section--tight band-paper">
         <div className="shell">
           <div className="stats">
             {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.06} className="stat">
-                <span className="stat__value">{s.value}</span>
-                <span className="stat__label">{s.label}</span>
-                <span className="stat__sub">{s.sub}</span>
-              </Reveal>
+              <AnimatedStat key={s.label} stat={s} delay={i * 0.08} />
             ))}
           </div>
         </div>
