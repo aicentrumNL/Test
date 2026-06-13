@@ -1,0 +1,10 @@
+.phero { padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: 0; }
+.phero__title { margin-top: 1.4rem; font-size: var(--step-4); max-width: 16ch; }
+.phero__intro { margin-top: 1.6rem; max-width: 56ch; }
+.phero__meta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+.phero__chip {
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+  color: var(--ink-2); padding: 0.5em 1em; border: 1px solid var(--line-strong); border-radius: 999px;
+  background: var(--paper);
+}
+.phero__rule { margin-top: clamp(2.5rem, 5vw, 4rem); }
