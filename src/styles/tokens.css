@@ -1,0 +1,52 @@
+:root {
+  /* Surfaces */
+  --paper: #fbfaf7;
+  --base: #f4f1ea;
+  --base-2: #ece7dd;
+  --sand: #d9cfbe;
+  --taupe: #c2b6a2;
+
+  /* Ink & neutrals */
+  --ink: #1c1a16;
+  --ink-2: #46423a;
+  --concrete: #837c70;
+  --line: #ddd6c8;
+  --line-strong: #c9c0ae;
+
+  /* Accent — gedempt klei / brons */
+  --accent: #9a6a4b;
+  --accent-deep: #7c5238;
+  --accent-soft: #b98e6f;
+
+  /* On-dark */
+  --ink-paper: #f1ece2;
+  --ink-mute: #a59c8c;
+
+  /* Type */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Inter', sans-serif;
+
+  /* Scale */
+  --step--1: clamp(0.78rem, 0.75rem + 0.15vw, 0.86rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.55rem, 1.35rem + 1vw, 2.2rem);
+  --step-3: clamp(2.1rem, 1.7rem + 2vw, 3.4rem);
+  --step-4: clamp(2.8rem, 2.1rem + 3.4vw, 5.2rem);
+  --step-5: clamp(3.4rem, 2.3rem + 5.2vw, 7rem);
+
+  /* Layout */
+  --maxw: 1240px;
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --radius: 2px;
+  --radius-lg: 4px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.6s;
+
+  /* Shadow (zeer subtiel) */
+  --shadow: 0 1px 2px rgba(28, 26, 22, 0.04), 0 12px 30px -18px rgba(28, 26, 22, 0.25);
+  --shadow-lg: 0 30px 70px -40px rgba(28, 26, 22, 0.45);
+}
