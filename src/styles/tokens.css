@@ -1,52 +1,58 @@
 :root {
-  /* Surfaces */
-  --paper: #fbfaf7;
-  --base: #f4f1ea;
-  --base-2: #ece7dd;
-  --sand: #d9cfbe;
-  --taupe: #c2b6a2;
+  /* ---------- Surfaces — mineraal / vers pleister ---------- */
+  --lime: #e7e5dd;        /* koel kalkwit — base */
+  --paper: #f3f2ec;       /* vers pleister — raised/cards */
+  --mist: #dcd9d0;        /* cementnevel — subtiele alt-band */
+  --line: #cfcabd;        /* haarlijn op licht */
+  --line-soft: #dcd8cd;
 
-  /* Ink & neutrals */
-  --ink: #1c1a16;
-  --ink-2: #46423a;
-  --concrete: #837c70;
-  --line: #ddd6c8;
-  --line-strong: #c9c0ae;
+  /* ---------- Ink & neutrals ---------- */
+  --ink: #15171a;         /* koppen / near-black */
+  --graphite: #45484a;    /* secundaire tekst — AA-veilig op licht */
+  --cement: #5e5f58;      /* gedempte labels — AA-veilig (≥4.5:1) op licht */
 
-  /* Accent — gedempt klei / brons */
-  --accent: #9a6a4b;
-  --accent-deep: #7c5238;
-  --accent-soft: #b98e6f;
+  /* ---------- Donkere band — uitgehard beton ---------- */
+  --slate: #1e2227;
+  --slate-2: #262b30;
+  --on-slate: #e7e5dd;    /* tekst op donker */
+  --on-slate-mute: #9a9b94;
+  --line-dark: rgba(231, 229, 221, 0.14);
 
-  /* On-dark */
-  --ink-paper: #f1ece2;
-  --ink-mute: #a59c8c;
+  /* ---------- Accent — rauwe omber (spaarzaam) ---------- */
+  --umber: #7a5236;
+  --umber-deep: #603f29;
+  --umber-lite: #a87d57;  /* op donker */
 
-  /* Type */
-  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  /* ---------- Type ---------- */
+  --font-display: 'Bricolage Grotesque', 'Arial Narrow', sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
 
-  /* Scale */
-  --step--1: clamp(0.78rem, 0.75rem + 0.15vw, 0.86rem);
-  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
-  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
-  --step-2: clamp(1.55rem, 1.35rem + 1vw, 2.2rem);
-  --step-3: clamp(2.1rem, 1.7rem + 2vw, 3.4rem);
-  --step-4: clamp(2.8rem, 2.1rem + 3.4vw, 5.2rem);
-  --step-5: clamp(3.4rem, 2.3rem + 5.2vw, 7rem);
+  /* ---------- Type scale (fluid) ---------- */
+  --step--2: clamp(0.69rem, 0.67rem + 0.1vw, 0.75rem);
+  --step--1: clamp(0.8rem, 0.77rem + 0.13vw, 0.875rem);
+  --step-0:  clamp(1rem, 0.97rem + 0.18vw, 1.1rem);
+  --step-1:  clamp(1.2rem, 1.12rem + 0.4vw, 1.45rem);
+  --step-2:  clamp(1.5rem, 1.32rem + 0.9vw, 2.1rem);
+  --step-3:  clamp(2rem, 1.65rem + 1.7vw, 3.2rem);
+  --step-4:  clamp(2.6rem, 2rem + 3vw, 4.7rem);
+  --step-5:  clamp(3.1rem, 2.2rem + 4.6vw, 6.3rem);
 
-  /* Layout */
-  --maxw: 1240px;
-  --gutter: clamp(1.25rem, 5vw, 5rem);
-  --radius: 2px;
-  --radius-lg: 4px;
+  /* ---------- Layout ---------- */
+  --maxw: 1280px;
+  --gutter: clamp(1.25rem, 5vw, 5.5rem);
+  --radius: 3px;
+  --radius-lg: 5px;
+  --hdr-h: 70px;
 
-  /* Motion */
+  /* ---------- Motion ---------- */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur: 0.6s;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 0.25s;
+  --t-med: 0.45s;
+  --t-slow: 0.7s;
 
-  /* Shadow (zeer subtiel) */
-  --shadow: 0 1px 2px rgba(28, 26, 22, 0.04), 0 12px 30px -18px rgba(28, 26, 22, 0.25);
-  --shadow-lg: 0 30px 70px -40px rgba(28, 26, 22, 0.45);
+  /* ---------- Shadow (subtiel, koel) ---------- */
+  --shadow: 0 1px 2px rgba(21, 23, 26, 0.04), 0 14px 34px -20px rgba(21, 23, 26, 0.28);
+  --shadow-lg: 0 36px 80px -46px rgba(21, 23, 26, 0.5);
 }

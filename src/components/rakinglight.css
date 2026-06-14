@@ -1,0 +1,59 @@
+.raking {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 100 / 130;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #1d1b18;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(21, 23, 26, 0.4);
+  cursor: crosshair;
+  isolation: isolate;
+}
+.raking__svg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block;
+}
+
+/* Glans-strook bovenaan — alsof het oppervlak net glad gestreken is */
+.raking__sheen {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(168deg, rgba(243, 242, 236, 0.16) 0%, transparent 32%);
+  mix-blend-mode: screen;
+}
+/* Vignet — randen iets donkerder voor diepte */
+.raking__vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 90px 10px rgba(15, 14, 12, 0.55);
+  border-radius: inherit;
+}
+
+/* Spec-label rechtsonder op het paneel */
+.raking__label {
+  position: absolute; left: 1rem; bottom: 1rem; z-index: 2;
+  display: inline-flex; align-items: center; gap: 0.55em;
+  font-family: var(--font-mono);
+  font-size: var(--step--2); letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(243, 242, 236, 0.92);
+  padding: 0.5em 0.85em;
+  background: rgba(20, 19, 16, 0.42);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(243, 242, 236, 0.14);
+  border-radius: 999px;
+  pointer-events: none;
+}
+.raking__dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--umber-lite);
+  box-shadow: 0 0 8px 1px rgba(168, 125, 87, 0.8);
+  animation: raking-pulse 2.4s var(--ease) infinite;
+}
+@keyframes raking-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .raking { cursor: default; }
+  .raking__dot { animation: none; }
+}

@@ -2,27 +2,16 @@
 .cta::before {
   content: ''; position: absolute; inset: 0;
   background:
-    radial-gradient(60% 120% at 85% 0%, rgba(154,106,75,0.22), transparent 60%),
-    radial-gradient(50% 100% at 0% 100%, rgba(154,106,75,0.1), transparent 55%);
+    radial-gradient(58% 120% at 82% 0%, rgba(168, 125, 87, 0.18), transparent 60%),
+    radial-gradient(50% 100% at 0% 100%, rgba(122, 82, 54, 0.1), transparent 55%);
   pointer-events: none;
-}
-/* Groot decoratief woord — editorial achtergrond */
-.cta::after {
-  content: 'PLAN';
-  position: absolute; left: -0.05em; bottom: -0.18em;
-  font-family: var(--font-display); font-size: clamp(6rem, 22vw, 18rem);
-  font-weight: 600; line-height: 1; letter-spacing: -0.04em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(241,236,226,0.055);
-  text-stroke: 1px rgba(241,236,226,0.055);
-  pointer-events: none; user-select: none; white-space: nowrap;
 }
 .cta__inner {
   position: relative; z-index: 1;
   display: grid; grid-template-columns: 1.2fr 1fr;
   gap: clamp(2rem, 5vw, 5rem); align-items: end;
 }
-.cta__lead h2 { margin-top: 1.2rem; max-width: 16ch; }
+.cta__lead h2 { margin-top: 1.3rem; max-width: 16ch; }
 .cta__side { display: flex; flex-direction: column; gap: 1.8rem; }
 .cta__side p { max-width: 42ch; }
 .cta__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; }

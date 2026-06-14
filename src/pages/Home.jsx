@@ -8,24 +8,19 @@ import useCountUp from '../hooks/useCountUp'
 import SectionLabel from '../components/SectionLabel'
 import Reveal from '../components/Reveal'
 import Placeholder from '../components/Placeholder'
-import PlasterStroke from '../components/PlasterStroke'
+import RakingLight from '../components/RakingLight'
 import CtaBand from '../components/CtaBand'
 import './home.css'
 
-// Stat met teller-animatie voor numerieke waarden
-function AnimatedStat({ stat, delay }) {
-  // Extraheer getal uit strings als "10+", "Sinds '18", etc.
-  const numMatch = stat.value.match(/\d+/)
-  const num = numMatch ? parseInt(numMatch[0], 10) : null
-  const prefix = numMatch ? stat.value.slice(0, numMatch.index) : ''
-  const suffix = numMatch ? stat.value.slice(numMatch.index + numMatch[0].length) : ''
-
-  const [count, ref] = useCountUp(num ?? 0, { duration: 1600, delay: delay * 1000 })
-
+// Stat-cel. Telt numerieke waarden op zodra in beeld; statische waarden direct.
+function Stat({ stat, delay }) {
+  const [count, ref] = useCountUp(stat.num ?? 0, { duration: 1500, delay: delay * 1000 })
   return (
-    <Reveal delay={delay} className="stat">
+    <Reveal className="stat" delay={delay}>
       <span className="stat__value" ref={ref}>
-        {num != null ? `${prefix}${count}${suffix}` : stat.value}
+        {stat.num != null ? count : stat.value}
+        {stat.suffix && <span className="stat__suffix">{stat.suffix}</span>}
+        {stat.unit && <span className="stat__unit">{stat.unit}</span>}
       </span>
       <span className="stat__label">{stat.label}</span>
       <span className="stat__sub">{stat.sub}</span>
@@ -43,42 +38,36 @@ export default function Home() {
     <>
       {/* ---------- HERO ---------- */}
       <section className="hero">
-        {/* Decoratieve plamuurstreek — tekent zichzelf bij laden */}
-        <div className="hero__stroke-wrap" aria-hidden="true">
-          <PlasterStroke className="hero__stroke" />
-        </div>
-
         <div className="shell hero__grid">
           <div className="hero__copy">
             <Reveal>
               <span className="eyebrow hero__eyebrow">
-                Stukadoorsbedrijf · {company.address.city} &amp; Rotterdam e.o.
+                Stukadoorsbedrijf — {company.address.city} &amp; Rotterdam e.o.
               </span>
             </Reveal>
-            <Reveal delay={0.08} as="h1" className="hero__title">
-              Strak stucwerk,<br />opgeleverd{' '}
-              <em className="hero__italic">op&nbsp;schema.</em>
+            <Reveal delay={0.06} as="h1" className="hero__title">
+              Vlakke wanden,<br />tot in het <span className="hero__accent">strijklicht.</span>
             </Reveal>
-            <Reveal delay={0.16} as="p" className="lead hero__lead">
-              Een betrouwbare stucpartner voor aannemers, ontwikkelaars en verzekeraars.
-              Van grootschalige nieuwbouw tot schadeherstel — vakwerk dat blijft staan,
-              met {company.warranty} garantie.
+            <Reveal delay={0.14} as="p" className="lead hero__lead">
+              Hoogwaardig binnen- en buitenstucwerk voor aannemers, ontwikkelaars en
+              verzekeraars. Van grootschalige nieuwbouw tot schadeherstel — vakwerk dat
+              de keuring in elk licht doorstaat, met {company.warranty} garantie.
             </Reveal>
-            <Reveal delay={0.24} className="hero__actions">
-              <Link to="/contact" className="btn btn--primary hero__cta-btn">
-                Offerte aanvragen <ArrowRight className="btn__arrow" size={16} />
+            <Reveal delay={0.22} className="hero__actions">
+              <Link to="/contact" className="btn btn--primary">
+                Offerte aanvragen <ArrowRight className="btn__arrow" size={15} />
               </Link>
               <Link to="/projecten" className="btn btn--ghost">Bekijk projecten</Link>
             </Reveal>
-            <Reveal delay={0.32} className="hero__assurance">
-              <span><Check size={14} strokeWidth={2.4} /> {company.experienceYears} jaar ervaring</span>
-              <span><Check size={14} strokeWidth={2.4} /> Planning-betrouwbaar</span>
-              <span><Check size={14} strokeWidth={2.4} /> {company.warranty} garantie</span>
+            <Reveal delay={0.3} className="hero__assurance">
+              <span><Check size={14} strokeWidth={2.6} /> {company.experienceYears} jaar ervaring</span>
+              <span><Check size={14} strokeWidth={2.6} /> Planning-betrouwbaar</span>
+              <span><Check size={14} strokeWidth={2.6} /> {company.warranty} garantie</span>
             </Reveal>
           </div>
 
-          <Reveal delay={0.2} className="hero__media">
-            <Placeholder label="Sfeerbeeld vakwerk" ratio="3 / 4" tone="sand" src="/images/hero.jpg" alt="Strak gestuukte wand" />
+          <Reveal delay={0.18} className="hero__media">
+            <RakingLight label="Strijklicht — beweeg de cursor" />
             <div className="hero__badge">
               <strong>Sinds {company.founded}</strong>
               <span>Eigen onderneming, opgebouwd op vakmanschap</span>
@@ -87,12 +76,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------- STATS met teller-animatie ---------- */}
+      {/* ---------- STATS ---------- */}
       <section className="section--tight band-paper">
         <div className="shell">
           <div className="stats">
             {stats.map((s, i) => (
-              <AnimatedStat key={s.label} stat={s} delay={i * 0.08} />
+              <Stat key={s.label} stat={s} delay={i * 0.08} />
             ))}
           </div>
         </div>
@@ -106,21 +95,20 @@ export default function Home() {
           </div>
           <div className="intro__body">
             <Reveal as="h2" className="intro__head">
-              Specialist in stucwerk voor opdrachtgevers die op kwaliteit
-              <span className="display-italic"> en planning</span> rekenen.
+              Stucwerk voor opdrachtgevers die op kwaliteit én planning rekenen.
             </Reveal>
-            <Reveal delay={0.1} as="p" className="intro__text">
+            <Reveal delay={0.08} as="p" className="intro__text">
               {company.name} is een stukadoorsbedrijf uit {company.address.city} met meer dan
               tien jaar ervaring in binnen- en buitenstucwerk. We werken voor aannemers,
               projectontwikkelaars en verzekeraars in {company.region} — projecten waarbij
               een strakke afwerking én een betrouwbare oplevering tellen.
             </Reveal>
-            <Reveal delay={0.16} as="p" className="muted intro__text">
+            <Reveal delay={0.14} as="p" className="muted intro__text">
               Eén vast aanspreekpunt, korte lijnen en werk dat schoon en georganiseerd op de
-              bouwplaats wordt opgeleverd. Geen ruis, geen verrassingen — gewoon vakwerk dat klopt.
+              bouwplaats wordt opgeleverd. Geen ruis, geen verrassingen.
             </Reveal>
-            <Reveal delay={0.22}>
-              <Link to="/over-ons" className="tlink">Meer over ons <ArrowUpRight size={16} /></Link>
+            <Reveal delay={0.2}>
+              <Link to="/over-ons" className="tlink">Meer over ons <ArrowUpRight size={15} /></Link>
             </Reveal>
           </div>
         </div>
@@ -159,17 +147,17 @@ export default function Home() {
               <SectionLabel num="03">Diensten</SectionLabel>
               <Reveal as="h2" className="svc__title">Eén vakman, het volledige spectrum.</Reveal>
             </div>
-            <Reveal delay={0.1} className="svc__intro">
+            <Reveal delay={0.08} className="svc__intro">
               <p className="muted">
                 Binnen- en buitenstucwerk, spuit- en sierwerk, exclusieve afwerkingen en
                 schadeherstel — alles onder één dak en met één aanspreekpunt.
               </p>
-              <Link to="/diensten" className="tlink">Alle diensten <ArrowUpRight size={16} /></Link>
+              <Link to="/diensten" className="tlink">Alle diensten <ArrowUpRight size={15} /></Link>
             </Reveal>
           </div>
           <div className="svc__list">
             {services.map((s, i) => (
-              <Reveal key={s.id} delay={(i % 3) * 0.06}>
+              <Reveal key={s.id} delay={(i % 3) * 0.05}>
                 <Link to="/diensten" className="svcrow">
                   <span className="svcrow__num">{s.num}</span>
                   <span className="svcrow__title">{s.title}</span>
@@ -183,11 +171,11 @@ export default function Home() {
       </section>
 
       {/* ---------- USP STRIP ---------- */}
-      <section className="usps band-paper">
+      <section className="usps band-mist" aria-label="Kernwaarden">
         <div className="usps__track">
           {[...usps, ...usps].map((u, i) => (
             <span className="usps__item" key={i}>
-              <span className="usps__dot" />{u}
+              <span className="usps__dot" aria-hidden="true" />{u}
             </span>
           ))}
         </div>
@@ -201,9 +189,9 @@ export default function Home() {
               <SectionLabel num="04">Projecten</SectionLabel>
               <Reveal as="h2" className="svc__title">Werk dat voor zich spreekt.</Reveal>
             </div>
-            <Reveal delay={0.1} className="svc__intro">
+            <Reveal delay={0.08} className="svc__intro">
               <p className="muted">Een greep uit projecten voor aannemers, ontwikkelaars en verzekeraars.</p>
-              <Link to="/projecten" className="tlink">Alle projecten <ArrowUpRight size={16} /></Link>
+              <Link to="/projecten" className="tlink">Alle projecten <ArrowUpRight size={15} /></Link>
             </Reveal>
           </div>
           <div className="feat">

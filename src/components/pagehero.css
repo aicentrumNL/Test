@@ -3,8 +3,9 @@
 .phero__intro { margin-top: 1.4rem; max-width: 58ch; }
 .phero__meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; }
 .phero__chip {
-  font-size: 0.69rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
-  color: var(--ink-2); padding: 0.45em 0.9em; border: 1px solid var(--line-strong); border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
+  color: var(--graphite); padding: 0.5em 0.9em; border: 1px solid var(--line); border-radius: 999px;
   background: var(--paper);
 }
 .phero__rule { margin-top: clamp(2rem, 4.5vw, 3.5rem); }

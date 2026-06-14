@@ -23,11 +23,12 @@ export const company = {
   legalForm: 'Eenmanszaak',
 };
 
+// num → telt op bij in beeld komen; value → statisch. unit = mono-eenheid.
 export const stats = [
-  { value: company.experienceYears, label: 'jaar vakervaring', sub: 'in binnen- en buitenstucwerk' },
-  { value: 'Sinds ’18', label: 'eigen onderneming', sub: 'opgebouwd op vakmanschap' },
-  { value: company.warranty, label: 'garantie', sub: 'op opgeleverd werk' },
-  { value: '1 aanspreek-', label: 'punt per project', sub: 'korte lijnen, geen ruis' },
+  { num: 10, suffix: '+', label: 'Jaar vakervaring', sub: 'binnen- én buitenstucwerk' },
+  { value: '2018', label: 'Onderneming sinds', sub: 'opgebouwd op vakmanschap' },
+  { value: '3–5', unit: 'jaar', label: 'Garantie op het werk', sub: 'kwaliteit die blijft staan' },
+  { num: 100, suffix: '%', label: 'Eigen uitvoering', sub: 'één vast aanspreekpunt' },
 ];
 
 // Doelgroepen — zakelijke focus

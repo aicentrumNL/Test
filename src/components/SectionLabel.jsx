@@ -1,9 +1,9 @@
-// Genummerde uppercase kicker, bv. "02 — Diensten"
+// Mono spec-label in bouwtekening-stijl, bv. "01 — DIENSTEN"
 export default function SectionLabel({ num, children, className = '' }) {
   return (
-    <span className={`kicker ${className}`}>
-      {num && <span className="kicker__num">{num}</span>}
-      <span className="kicker__line" aria-hidden="true" />
+    <span className={`spec ${className}`}>
+      {num && <span className="spec__num">{num}</span>}
+      <span className="spec__line" aria-hidden="true" />
       {children}
     </span>
   )

@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
-  <rect width="48" height="48" rx="8" fill="#1c1a16"/>
-  <path d="M9 33c5-1.2 9-3.6 11.5-7.2C23.4 21.4 26.5 18 31 16.8c3.5-1 7-0.7 9.5 0.6"
-        stroke="#b98e6f" stroke-width="1.7" stroke-linecap="round" fill="none" opacity="0.9"/>
-  <path d="M11 38c6-1.2 10.5-4.2 13.5-8.4C27.6 25 31 22.2 36 21"
-        stroke="rgba(241,236,226,0.5)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-  <text x="24" y="23" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#f1ece2" letter-spacing="0.5">GG</text>
+  <rect width="48" height="48" rx="9" fill="#1e2227"/>
+  <path d="M8 32c6-1.4 10.5-4 13.5-8C24.5 20 28 17 33 15.8c3.5-0.9 7-0.6 9.5 0.7"
+        stroke="#a87d57" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <path d="M10 37c6.5-1.3 11.5-4.4 14.5-8.6C27.5 24 31 21.2 36 20"
+        stroke="rgba(231,229,221,0.5)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+  <text x="24" y="22.5" text-anchor="middle" font-family="'Bricolage Grotesque', Arial, sans-serif" font-weight="700" font-size="15" fill="#e7e5dd" letter-spacing="0.3">GG</text>
 </svg>
