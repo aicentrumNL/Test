@@ -2,16 +2,19 @@ import { useEffect, useId, useRef } from 'react'
 import './rakinglight.css'
 
 /*
-  Strijklicht — een procedureel pleisteroppervlak dat oplicht onder een lichtbron
-  die de cursor volgt. Precies hoe een stukadoor de vlakheid van een wand keurt:
-  licht onder een scherpe hoek maakt elke oneffenheid zichtbaar.
+  Strijklicht — een glad gestuukt oppervlak dat oplicht onder een lichtbron die de
+  cursor volgt. Precies hoe een stukadoor de vlakheid van een wand keurt: licht onder
+  een scherpe hoek maakt elke oneffenheid zichtbaar.
 
-  Techniek: feTurbulence (pleisterkorrel als hoogtekaart) → feDiffuseLighting met
-  een <fePointLight> waarvan de positie realtime meebeweegt. Geen foto's nodig.
+  Techniek: feTurbulence (lage frequentie → brede, zachte golving i.p.v. korrel) levert
+  een vlakke pleister-ondergrond. Het GG-monogram (transparante PNG → alpha = vorm) wordt
+  via feImage + feGaussianBlur als zacht reliëf in die hoogtekaart geperst. feDiffuseLighting
+  met een meebewegende <fePointLight> onthult het logo "in de verse pleister". Geen foto's.
 
-  Fallbacks: zonder muis een trage auto-sweep; bij prefers-reduced-motion statisch.
+  Fallbacks: zonder muis een trage auto-sweep; bij prefers-reduced-motion statisch belicht
+  onder een hoek die het reliëf subtiel zichtbaar houdt.
 */
-export default function RakingLight({ className = '', label }) {
+export default function RakingLight({ className = '', label, monogram = '/images/monogram-gouw.png' }) {
   const id = useId().replace(/:/g, '')
   const wrapRef = useRef(null)
   const lightRef = useRef(null)
@@ -31,8 +34,8 @@ export default function RakingLight({ className = '', label }) {
     let raf = 0
 
     if (reduce) {
-      light.setAttribute('x', '34')
-      light.setAttribute('y', '24')
+      light.setAttribute('x', '26')
+      light.setAttribute('y', '30')
       return
     }
 
@@ -88,8 +91,20 @@ export default function RakingLight({ className = '', label }) {
       <svg className="raking__svg" viewBox="0 0 100 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <defs>
           <filter id={`plaster-${id}`} x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
-            <feTurbulence type="fractalNoise" baseFrequency="0.72 0.86" numOctaves="2" seed="7" result="noise" />
-            <feDiffuseLighting in="noise" result="lit" lightingColor="#efe9dd" surfaceScale="3.4" diffuseConstant="1.15">
+            {/* Gladde pleister-ondergrond: lage frequentie = brede, zachte golving i.p.v. korrel */}
+            <feTurbulence type="fractalNoise" baseFrequency="0.015 0.021" numOctaves="2" seed="7" result="plasterMap" />
+
+            {/* Monogram als reliëf-bron — transparante PNG, dus alpha = de vorm zelf */}
+            <feImage href={monogram} x="9" y="22" width="82" height="86" preserveAspectRatio="xMidYMid meet" result="logoRaw" />
+            {/* Zachte randen → het logo lijkt in de pleister gedrukt i.p.v. opgeplakt */}
+            <feGaussianBlur in="logoRaw" stdDeviation="0.85" result="logoSoft" />
+
+            {/* Logo-reliëf (dominant) bij de subtiele pleister-golving optellen → één hoogtekaart.
+                feDiffuseLighting leest enkel de alpha-gradiënt, dus alleen reliëf telt — geen kleur. */}
+            <feComposite in="logoSoft" in2="plasterMap" operator="arithmetic" k1="0" k2="0.85" k3="0.34" k4="0" result="bump" />
+
+            {/* Belichten met de meebewegende lichtbron */}
+            <feDiffuseLighting in="bump" result="lit" lightingColor="#efe9dd" surfaceScale="2.6" diffuseConstant="1.12">
               <fePointLight ref={lightRef} x="30" y="26" z="17" />
             </feDiffuseLighting>
             {/* Til de zwarten op tot een warme pleister-schaduw i.p.v. puur zwart */}
