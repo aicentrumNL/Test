@@ -5,6 +5,7 @@ export const company = {
   name: 'Gouw Gesmeerd',
   tagline: 'Stukadoorsbedrijf',
   fullName: 'Stukadoor Gouw Gesmeerd',
+  owner: 'Damien Gouw',
   founded: 2018,
   experienceYears: '10+',
   warranty: '3–5 jaar',

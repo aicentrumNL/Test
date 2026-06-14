@@ -92,6 +92,17 @@ export default function Home() {
         <div className="shell intro">
           <div className="intro__label">
             <SectionLabel num="01">Het bedrijf</SectionLabel>
+            <Reveal delay={0.1} className="intro__owner">
+              <Placeholder
+                ratio="3 / 2"
+                tone="sand"
+                src="/images/damien-gouw.jpg"
+                alt={`${company.owner}, eigenaar van ${company.name}, bij de bedrijfsbus`}
+              />
+              <p className="media-cap">
+                <strong>{company.owner}</strong> — eigenaar
+              </p>
+            </Reveal>
           </div>
           <div className="intro__body">
             <Reveal as="h2" className="intro__head">

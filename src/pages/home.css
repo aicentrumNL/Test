@@ -115,9 +115,11 @@
 .intro__head { font-size: var(--step-3); max-width: 20ch; }
 .intro__text { margin-top: 1.4rem; max-width: 58ch; color: var(--graphite); }
 .intro__body .tlink { margin-top: 1.9rem; }
+.intro__owner { margin-top: 1.8rem; max-width: 17rem; }
 @media (max-width: 720px) {
   .intro { grid-template-columns: 1fr; gap: 1.4rem; }
-  .intro__label { position: static; }
+  .intro__label { position: static; display: flex; flex-direction: column; gap: 1.2rem; }
+  .intro__owner { margin-top: 0; max-width: 20rem; }
 }
 
 /* ---------- AUDIENCES (dark band) ---------- */

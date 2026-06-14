@@ -32,14 +32,23 @@ export default function OverOns() {
         <div className="shell">
           <div className="split">
             <Reveal className="split__media">
-              <Placeholder label="Portret / aan het werk" ratio="4 / 5" tone="sand" src="/images/over.jpg" />
+              <Placeholder
+                ratio="3 / 2"
+                tone="sand"
+                src="/images/damien-gouw.jpg"
+                alt={`${company.owner}, eigenaar van ${company.name}, bij de bedrijfsbus`}
+              />
+              <p className="media-cap">
+                <strong>{company.owner}</strong> — eigenaar &amp; uitvoerend stukadoor
+              </p>
             </Reveal>
             <Reveal delay={0.1} className="split__body">
               <SectionLabel num="01">Het verhaal</SectionLabel>
               <h2 style={{ marginTop: '1.2rem' }}>Opgebouwd, streek voor streek.</h2>
               <p className="lead">
-                Wat begon als vakmanschap is uitgegroeid tot een eigen onderneming met een
-                duidelijke reputatie: strak werk, op tijd geleverd.
+                {company.owner} bouwde {company.name} op vanuit het vak — wat begon als
+                vakmanschap groeide uit tot een onderneming met een duidelijke reputatie:
+                strak werk, op tijd geleverd.
               </p>
               <p className="muted" style={{ marginTop: '1.2rem' }}>
                 Met meer dan tien jaar ervaring kent {company.name} elke kant van het vak —
@@ -61,7 +70,11 @@ export default function OverOns() {
           <div className="stats">
             {stats.map((s) => (
               <Reveal key={s.label} className="stat">
-                <span className="stat__value">{s.value}</span>
+                <span className="stat__value">
+                  {s.value ?? s.num}
+                  {s.suffix && <span className="stat__suffix">{s.suffix}</span>}
+                  {s.unit && <span className="stat__unit">{s.unit}</span>}
+                </span>
                 <span className="stat__label">{s.label}</span>
                 <span className="stat__sub">{s.sub}</span>
               </Reveal>

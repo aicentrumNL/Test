@@ -153,6 +153,15 @@ button { font-family: inherit; cursor: pointer; }
 /* ============================================================
    Utilities
    ============================================================ */
+/* Onderschrift bij een foto */
+.media-cap {
+  margin-top: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--2); letter-spacing: 0.04em;
+  color: var(--graphite);
+}
+.media-cap strong { color: var(--ink); font-weight: 500; }
+
 .center { text-align: center; }
 .nowrap { white-space: nowrap; }
 .sr-only {
