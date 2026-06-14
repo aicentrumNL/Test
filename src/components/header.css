@@ -130,11 +130,14 @@
 .hdr__panel {
   position: fixed;
   top: var(--hdr-h); left: 0; right: 0; bottom: 0;
+  /* dvh-fallback voor de dynamische adresbalk van mobiel Safari */
+  height: calc(100dvh - var(--hdr-h));
   z-index: 199;
   background: var(--paper);
   display: flex; flex-direction: column; justify-content: space-between;
-  padding: 0 var(--gutter) 2.5rem;
+  padding: 1.25rem var(--gutter) calc(2.5rem + env(safe-area-inset-bottom, 0px));
   overflow-y: auto;
+  overscroll-behavior: contain;
   animation: panel-in 0.28s var(--ease) both;
 }
 @keyframes panel-in {
