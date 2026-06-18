@@ -16,6 +16,14 @@
   display: block;
 }
 
+/* Monogram in huisstijlkleur over het reliëf — 'overlay' laat het strijklicht erdoorheen
+   spelen zodat het GG kleur krijgt maar in de pleister verankerd blijft */
+.raking__logo {
+  mix-blend-mode: overlay;
+  opacity: 0.68;
+  pointer-events: none;
+}
+
 /* Glans-strook bovenaan — alsof het oppervlak net glad gestreken is */
 .raking__sheen {
   position: absolute; inset: 0; pointer-events: none;

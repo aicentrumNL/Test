@@ -116,6 +116,18 @@ export default function RakingLight({ className = '', label, monogram = '/images
           </filter>
         </defs>
         <rect width="100" height="130" filter={`url(#plaster-${id})`} />
+
+        {/* Logo in huisstijlkleur, exact over het reliëf — blend met het licht zodat het
+            GG duidelijker leest maar in de wand verankerd blijft i.p.v. opgeplakt */}
+        <image
+          className="raking__logo"
+          href={monogram}
+          x="9"
+          y="22"
+          width="82"
+          height="86"
+          preserveAspectRatio="xMidYMid meet"
+        />
       </svg>
 
       {/* Subtiele glans bovenaan + vignet voor diepte */}
